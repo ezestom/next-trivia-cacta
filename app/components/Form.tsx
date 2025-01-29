@@ -12,6 +12,8 @@ export const Form = () => {
    const [loading, setLoading] = useState(false);
    const [userId, setUserId] = useState<number | null>(null); // Para guardar el id del usuario
 
+   console.log(userId);
+
    const router = useRouter();
 
    const handleRedirect = (userId: number) => {
