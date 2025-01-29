@@ -2,10 +2,11 @@
 import { createClient } from "@libsql/client";
 
 const client = createClient({
-	url: "file:local.db", // Puedes usar esta URL para pruebas locales
-	syncUrl: "https://ezestom-ddbb-ezestom.turso.io", // URL de tu base de datos en Turso
-	authToken:
-		"eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJleHAiOjE3NDMyNzQ4NjUsImlhdCI6MTczODA5MDg2NSwiaWQiOiJkNGFhY2RiNC1iZTlhLTQ2NTItOWZlNi02OGZhMmRlMDVhMWYifQ.ixKhtY2jaX4uri_2o5AWiACVHPmxmYdcVx7vLHiMyKM5WxrykQQtFC_nLRKSSIUn5J6-UHzvhOHdS2Cap_74AA", // Token de autorización
+	url:
+		process.env.NODE_ENV === "production"
+			? "https://ezestom-ddbb-ezestom.turso.io"
+			: "file:local.db",
+	authToken: process.env.TURSO_AUTH_TOKEN,
 });
 
 // Función para crear la tabla `form_submissions`
