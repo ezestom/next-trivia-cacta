@@ -2,10 +2,9 @@
 import { createClient } from "@libsql/client";
 
 const client = createClient({
-	// url: "file:path/to/db-file.db",
-
-	url: process.env.TURSO_DATABASE_URL || "",
-	authToken: process.env.TURSO_AUTH_TOKEN || "",
+	url: "file:local.db",
+	syncUrl: "https://ezestom-ddbb-ezestom.turso.io", // URL de tu base de datos en Turso
+	authToken: process.env.AUTH_TOKEN, // Token de autenticación de Turso
 });
 
 // Función para crear la tabla `form_submissions`
