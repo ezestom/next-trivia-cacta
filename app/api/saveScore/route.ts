@@ -5,7 +5,7 @@ import client from "../../lib/turso"; // Importar el cliente de Turso
 const insertScoreData = async (userId: number, score: number) => {
 	const result = await client.execute(
 		`
-    INSERT INTO user_scores (user_id, score)
+    INSERT INTO user_score (user_id, score)
     VALUES (?, ?);
   `,
 		[userId, score]
@@ -31,7 +31,7 @@ export async function POST(request: Request) {
 		// Primero, obtenemos el ID del usuario usando el email
 		const result = await client.execute(
 			`
-      SELECT id FROM form_submissions WHERE email = ?;
+      SELECT id FROM user_form WHERE email = ?;
     `,
 			[email]
 		);

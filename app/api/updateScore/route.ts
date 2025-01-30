@@ -11,7 +11,7 @@ const updateScore = async (id: string, score: number) => {
 	); // Log para depuración
 
 	const result = await client.execute(
-		`UPDATE users SET score = ? WHERE id = ?;`,
+		`UPDATE user_score SET score = ? WHERE id = ?;`,
 		[score, id]
 	);
 	console.log("Resultado de la actualización:", result); // Log para depuración
@@ -36,3 +36,6 @@ export async function POST(request: Request) {
 		);
 	}
 }
+
+
+// original

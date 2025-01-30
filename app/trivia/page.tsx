@@ -58,11 +58,9 @@ export default function TriviaForm() {
    useEffect(() => {
       const fetchUserId = async () => {
          const email = localStorage.getItem("email"); // Asume que el correo electrónico se guarda en localStorage después de enviar el formulario
-         console.log("Email desde localStorage:", email);
          if (email) {
             const response = await fetch(`/api/getUserId?email=${email}`);
             const data = await response.json();
-            console.log("Respuesta API getUserId:", data);
 
             if (data.userId) {
                setUserId(data.userId);
@@ -109,7 +107,6 @@ export default function TriviaForm() {
    };
 
    const handleSubmitScore = async (participantId: number, score: number) => {
-      console.log("Enviando puntaje al servidor:", { participantId, score });
       const response = await fetch("/api/updateScore", {
          method: "POST",
          headers: { "Content-Type": "application/json" },
@@ -117,11 +114,10 @@ export default function TriviaForm() {
       });
 
       if (response.ok) {
-         alert("Puntaje actualizado exitosamente.");
+         alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " y lo hemos registrado. ¡Buena suerte!");
       } else {
          const errorData = await response.json();
-         console.error("Error al actualizar el puntaje:", errorData);
-         alert("Hubo un error al actualizar el puntaje.");
+         alert(errorData.error || "Hubo un error al actualizar el puntaje.");
       }
    };
 
@@ -139,12 +135,7 @@ export default function TriviaForm() {
                   </p>
                   {q.options.map((option, index) => {
                      const isSelected = answers[q.id] === index;
-                     const isCorrect = index === q.correctAnswer;
-                     const optionClass = isSelected
-                        ? isCorrect
-                           ? "bg-green-500 text-white"
-                           : "bg-red-500 text-white"
-                        : "bg-transparent";
+                     const optionClass = isSelected ? "bg-blue-500 text-white" : "bg-transparent";
 
                      return (
                         <div key={index} className="flex items-start space-x-2 w-full">

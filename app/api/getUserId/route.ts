@@ -5,7 +5,7 @@ import client from "../../lib/turso"; // Importar el cliente de Turso
 const getUserId = async (email: string) => {
 	const result = await client.execute(
 		`
-    SELECT id FROM form_submissions WHERE email = ?;
+    SELECT id FROM user_form WHERE email = ?;
   `,
 		[email]
 	);

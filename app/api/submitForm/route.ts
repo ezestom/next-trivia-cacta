@@ -12,7 +12,7 @@ const insertFormData = async (
 ) => {
 	const result = await client.execute(
 		`
-      INSERT INTO form_submissions (name, email, phone, company, sector, message)
+      INSERT INTO user_form (name, email, phone, company, sector, message)
       VALUES (?, ?, ?, ?, ?, ?)
       RETURNING id;
     `,
