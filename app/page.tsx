@@ -3,8 +3,8 @@ import Form from "./components/Form";
 
 export default function Home() {
   return (
-    <div className="flex items-start justify-center min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh pt-8">
-      <main className="flex flex-col gap-6 row-start-2 items-center">
+    <div className="flex items-start justify-center min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh p-4">
+      <main className="flex flex-col gap-4 row-start-2 items-center">
 
         <Image
           className="max-w-[150px] mx-auto"
@@ -21,7 +21,7 @@ export default function Home() {
             Completa el formulario y haz clic en <strong>Ir a la trivia.</strong>
           </li>
           <li className="mb-1" >
-            Si estas entre los ganadores, recibirás un correo con <strong>la bonificación.</strong>
+            Si estas entre los ganadores, recibirás un email con <strong>la bonificación.</strong>
           </li>
         </ol>
         <Form />
