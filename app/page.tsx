@@ -3,12 +3,12 @@ import Form from "./components/Form";
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh px-4">
-      <main className="flex flex-col gap-8 row-start-2 items-center">
+    <div className="flex items-start justify-center min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh pt-8">
+      <main className="flex flex-col gap-6 row-start-2 items-center">
 
         <Image
-          className="max-w-[100px] drop-shadow-md mx-auto"
-          src="/logo-color.png"
+          className="max-w-[150px] mx-auto"
+          src="/logoTrivia.png"
           alt="Next.js logo"
           width={180}
           height={38}
