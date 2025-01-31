@@ -10,14 +10,14 @@ export default function Gracias() {
 	useEffect(() => {
 		setTimeout(() => {
 			router.push("https://cacta.eco/"); // Redirige a la nueva URL después de 3 segundos
-		}, 3000);
+		}, 5000);
 	}, [router]);
 
 	return (
 		<main className="container mx-auto p-4 text-center flex items-center justify-center flex-col h-screen">
 			<Image
-				className="max-w-[100px] drop-shadow-md mx-auto pb-4"
-				src="/logo-color.png"
+				className="max-w-[125px] mx-auto pb-4"
+				src="/logoTrivia.png"
 				alt="Next.js logo"
 				width={180}
 				height={38}

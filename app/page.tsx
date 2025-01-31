@@ -7,7 +7,7 @@ export default function Home() {
       <main className="flex flex-col gap-4 row-start-2 items-center">
 
         <Image
-          className="max-w-[150px] mx-auto"
+          className="max-w-[125px] mx-auto"
           src="/logoTrivia.png"
           alt="Next.js logo"
           width={180}
@@ -16,12 +16,12 @@ export default function Home() {
         />
 
         <ol className="list-inside list-decimal text-sm text-left">
-          <li className="mb-1" >Participa por 1 de las 10 bonificaciones del <strong>25% off</strong> en nuestra App.</li>
-          <li className="mb-1" >
+          <li className="mb-1 text-pretty" >Participa por 1 de las 10 bonificaciones del <strong>25% off.</strong> </li>
+          <li className="mb-1 text-pretty" >
             Completa el formulario y haz clic en <strong>Ir a la trivia.</strong>
           </li>
-          <li className="mb-1" >
-            Si estas entre los ganadores, recibirás un email con <strong>la bonificación.</strong>
+          <li className="mb-1 text-pretty" >
+            Los ganadores, recibirán un email con <strong>la bonificación.</strong>
           </li>
         </ol>
         <Form />
