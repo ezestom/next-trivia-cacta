@@ -147,7 +147,7 @@ export default function TriviaForm() {
             // alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " ya lo hemos registrado 🌵");
 
             alert(`Gracias por participar! Tu puntaje es ${formatScore(score)} 🎯 Las respuestas correctas son:
-            ${questions.map(q => `• ${q.question}: ${q.options[q.correctAnswer]}`).join("\n")}`);
+         ${("\n")}${questions.map(q => `• ${q.question}: ${q.options[q.correctAnswer]}`).join("\n")}`);
 
 
          } else {
@@ -164,30 +164,30 @@ export default function TriviaForm() {
 
    return (
       <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)]  bg-[#007d67]/25 h-full">
-         <h2 className="text-2xl font-black bg-[#007d67]/50 rounded-lg text-center p-8 my-4 border border-black/15">Cacta 🧩 Trivia </h2>
+         <h2 className="text-2xl font-black bg-[#007d67]/50 rounded-lg text-center p-8 my-2 border border-black/15">Cacta 🧩 Trivia </h2>
 
-         <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-4 max-w-xl mx-auto px-4">
+         <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-2 max-w-xl mx-auto px-2">
             {questions.map((q) => (
-               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded-lg px-4 h-full py-8 border border-black/15">
+               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded-lg px-2 h-full py-4 border border-black/15">
                   <p className="font-normal pb-4 text-pretty text-start justify-start text-sm">
-                     <span className="text-green-500 animate-pulse delay-700 duration-300 ease-in-out"> </span> - {q.question}
+                     <span className="text-green-500 animate-pulse delay-200 duration-300 ease-in-out"> ✦ </span>  {q.question}
                   </p>
                   {q.options.map((option, index) => {
                      const isSelected = answers[q.id] === index;
                      const optionClass = isSelected ? "bg-blue-500 text-white" : "bg-transparent";
 
                      return (
-                        <div key={index} className="flex items-start space-x-2 w-full">
+                        <div key={index} className="flex items-start w-full">
                            <input
                               type="radio"
                               name={q.id}
                               id={`${q.id}-${index}`}
-                              className="m-auto"
+                              className="m-auto hidden peer"
                               onChange={() => handleAnswerChange(q.id, index)}
                               checked={answers[q.id] === index}
                               disabled={isSubmitted}
                            />
-                           <label htmlFor={`${q.id}-${index}`} className={`text-sm sm:text-base px-2 rounded border border-black/25 w-full ${optionClass}`}>
+                           <label htmlFor={`${q.id}-${index}`} className={`text-sm sm:text-base p-2 rounded border border-black/25 w-full ${optionClass}`}>
                               {option}
                            </label>
                         </div>
@@ -195,8 +195,8 @@ export default function TriviaForm() {
                   })}
                </div>
             ))}
-            <div className="w-full flex items-center justify-center col-span-2 pb-8">
-               <button type="submit" className="bg-blue-500 text-white p-3 rounded-xl hover:bg-blue-600 w-full md:w-auto border border-black/15">
+            <div className="w-full col-span-2 py-4">
+               <button type="submit" className="bg-blue-500  text-white p-3 rounded-xl hover:bg-blue-600 w-full  border border-black/15">
                   Enviar Respuestas
                </button>
             </div>

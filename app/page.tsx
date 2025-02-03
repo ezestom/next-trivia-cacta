@@ -21,7 +21,7 @@ export default function Home() {
         <ol className="list-inside list-decimal text-sm text-left">
           <li className="mb-1 text-pretty" ><strong>Mide, mejora y lidera</strong> el camino hacia una agricultura más sostenible.</li>
           <li className="mb-1 text-pretty" >
-            ¡Participa en nuestra trivia y obtén <strong>1 medición gratuita!</strong>
+            ¡Participa en nuestra <strong>Trivia</strong> y obtén <strong>1 medición gratuita!</strong>
           </li>
           <li className="mb-1 text-pretty" >
             No te pierdas el gran anuncio del ganador este <strong>31 de marzo de 2025</strong> en nuestras redes sociales.

@@ -18,18 +18,23 @@ export const Form = () => {
    const router = useRouter();
 
 
-   // Función para verificar si el email ya está en el local storage
-   const checkLocalStorageEmail = () => {
-      const storedEmail = localStorage.getItem("email");
-      if (storedEmail) {
-         setTimeout(() => {
-            document.querySelectorAll('input').forEach(input => input.disabled = true);
-            alert(`Ya has participado con el email ${storedEmail}. Te redirigiremos a la web, ¡suerte! 🌵`);
-            router.push(`https://cacta.eco/`);
-         }, 2000);
+   const checkUserExists = async (email: string) => {
+      try {
+         const response = await fetch(`/api/getUserId?email=${email}`);
+         const data = await response.json();
+
+         if (response.ok) {
+            // Usuario ya registrado, redirigir directamente
+            alert(`Ya has participado de la Trivia, te redirigiremos nuestra web, gracias! 🌵`);
+            handleRedirect(data.userId);
+            return true;
+         }
+      } catch (error) {
+         console.error("Error verificando usuario:", error);
       }
-   }
-   checkLocalStorageEmail();
+      return false;
+   };
+
 
    const handleRedirect = (userId: number) => {
       router.push(`/trivia?id=${userId}`); // Redirigir a trivia con el id del usuario
@@ -44,6 +49,10 @@ export const Form = () => {
    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
+      // Verificar si el usuario ya está registrado
+      const userExists = await checkUserExists(email);
+      if (userExists) return; // Si ya existe, no enviamos el formulario
+
       setLoading(true);
       const response = await fetch("/api/submitForm", {
          method: "POST",
@@ -56,23 +65,21 @@ export const Form = () => {
 
       if (response.ok) {
          const data = await response.json();
-         const participantId = data.participantId; // Suponiendo que `participantId` está en la respuesta
-         setUserId(participantId); // Guardar el ID del usuario
-         // add sonner toast
-         document.querySelectorAll('input').forEach(input => input.disabled = true);
-         alert(`Gracias por participar ${name}, nos pondremos en contacto contigo a ${email}, si resultas entre los ganadores. ¡Mucha suerte! 🍀`);
-         handleRedirect(participantId);// Redirigir a trivia con el ID del usuario
+         const participantId = data.participantId;
+         setUserId(participantId);
+         alert(`Gracias por participar ${name}, el ganador será anunciado el 31 de marzo en nuestras redes sociales.🎁`);
+         handleRedirect(participantId);
       } else {
          console.error("Error al enviar el formulario");
       }
    };
 
    return (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full bg-">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full pt-4">
          <label className="text-sm">
             Nombre y Apellido:
             <input
-               className="w-full p-2 border rounded-xl"
+               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
                type="text"
                value={name}
                onChange={(e) => setName(e.target.value)}
@@ -83,7 +90,7 @@ export const Form = () => {
          <label className="text-sm">
             Email:
             <input
-               className="w-full p-2 border rounded-xl"
+               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
                type="email"
                value={email}
                onChange={(e) => setEmail(e.target.value)}
@@ -94,7 +101,7 @@ export const Form = () => {
          <label className="text-sm">
             Teléfono:
             <input
-               className="w-full p-2 border rounded-xl"
+               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
                type="text"
                value={phone}
                onChange={(e) => setPhone(e.target.value)}
@@ -106,7 +113,7 @@ export const Form = () => {
          <label className="text-sm">
             Compañía:
             <input
-               className="w-full p-2 border rounded-xl"
+               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
                type="text"
                value={company}
                onChange={(e) => setCompany(e.target.value)}
@@ -117,7 +124,7 @@ export const Form = () => {
          <label className="text-sm">
             Sector:
             <input
-               className="w-full p-2 border rounded-xl"
+               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
                type="text"
                value={sector}
                onChange={(e) => setSector(e.target.value)}
@@ -132,7 +139,7 @@ export const Form = () => {
                placeholder="Mensaje (opcional) max. 150 caracteres"
                maxLength={150}
                rows={4}
-               className="w-full p-2 border rounded-xl resize-none"
+               className="w-full p-2 border rounded-xl bg-[#f9f9f9] resize-none"
             />
          </label>
          <div className="py-4 w-full flex">
