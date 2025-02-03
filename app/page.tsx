@@ -19,12 +19,12 @@ export default function Home() {
 
 
         <ol className="list-inside list-decimal text-sm text-left">
-          <li className="mb-1 text-pretty" >Participa por 1 de las 10 bonificaciones del <strong>25% off.</strong> </li>
+          <li className="mb-1 text-pretty" ><strong>Mide, mejora y lidera</strong> el camino hacia una agricultura más sostenible.</li>
           <li className="mb-1 text-pretty" >
-            Completa el formulario y haz clic en <strong>Ir a la trivia.</strong>
+            ¡Participa en nuestra trivia y obtén <strong>1 medición gratuita!</strong>
           </li>
           <li className="mb-1 text-pretty" >
-            Los ganadores, recibirán un email con <strong>la bonificación.</strong>
+            No te pierdas el gran anuncio del ganador este <strong>31 de marzo de 2025</strong> en nuestras redes sociales.
           </li>
         </ol>
         <Form />

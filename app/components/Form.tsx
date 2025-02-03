@@ -77,7 +77,7 @@ export const Form = () => {
          <label className="text-sm">
             Nombre y Apellido:
             <input
-               className="w-full p-2 border rounded"
+               className="w-full p-2 border rounded-xl"
                type="text"
                value={name}
                onChange={(e) => setName(e.target.value)}
@@ -88,7 +88,7 @@ export const Form = () => {
          <label className="text-sm">
             Email:
             <input
-               className="w-full p-2 border rounded"
+               className="w-full p-2 border rounded-xl"
                type="email"
                value={email}
                onChange={(e) => setEmail(e.target.value)}
@@ -99,7 +99,7 @@ export const Form = () => {
          <label className="text-sm">
             Teléfono:
             <input
-               className="w-full p-2 border rounded"
+               className="w-full p-2 border rounded-xl"
                type="text"
                value={phone}
                onChange={(e) => setPhone(e.target.value)}
@@ -111,7 +111,7 @@ export const Form = () => {
          <label className="text-sm">
             Compañía:
             <input
-               className="w-full p-2 border rounded"
+               className="w-full p-2 border rounded-xl"
                type="text"
                value={company}
                onChange={(e) => setCompany(e.target.value)}
@@ -122,7 +122,7 @@ export const Form = () => {
          <label className="text-sm">
             Sector:
             <input
-               className="w-full p-2 border rounded"
+               className="w-full p-2 border rounded-xl"
                type="text"
                value={sector}
                onChange={(e) => setSector(e.target.value)}
@@ -137,16 +137,16 @@ export const Form = () => {
                placeholder="Mensaje (opcional) max. 150 caracteres"
                maxLength={150}
                rows={4}
-               className="w-full p-2 border rounded resize-none"
+               className="w-full p-2 border rounded-xl resize-none"
             />
          </label>
          {
             loading ? (
-               <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600" type="submit" disabled>
+               <button className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 border border-black/15" type="submit" disabled>
                   Enviando...
                </button>
             ) : (
-               <button id="send" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600" type="submit">
+               <button id="send" className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 border border-black/15" type="submit">
                   Ir a la trivia
                </button>
             )

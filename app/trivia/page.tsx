@@ -5,46 +5,52 @@ import { useState, useEffect } from "react";
 const questions = [
    {
       id: "q1",
-      question: "¿Cuál es la capital de Francia?",
-      options: ["Londres", "París", "Berlín"],
-      correctAnswer: 1, // Indice de la respuesta correcta (en este caso, "París")
+      question: "La segunda industria con mayor impacto ambiental en el mundo es la agrícola.",
+      options: ["Verdadero", "Falso", "No está claro"],
+      correctAnswer: 0, // "Verdadero"
    },
    {
       id: "q2",
-      question: "¿En qué año se fundó Google?",
-      options: ["1998", "2000", "2002"],
-      correctAnswer: 0, // "1998"
+      question: "Los sistemas alimentarios agrícolas causan el ____ de las emisiones de efecto invernadero (emisiones Co2) en el mundo.",
+      options: ["18%", "25%", "34%"],
+      correctAnswer: 2, // "34%"
    },
    {
       id: "q3",
-      question: "¿Cuál es el río más largo del mundo?",
-      options: ["Amazonas", "Nilo", "Misisipi"],
-      correctAnswer: 0, // "Amazonas"
+      question: "La manera de medir el impacto medioambiental es a traves de la huella de carbono (Emisiones Co2).",
+      options: ["Verdadero", "Falso", "No está claro"],
+      correctAnswer: 1, // "Falso"
    },
    {
       id: "q4",
-      question: "¿Cuál es el país más grande del mundo?",
-      options: ["Rusia", "Canadá", "China"],
-      correctAnswer: 0, // "Rusia"
+      question: "Los sistemas alimentarios causan el ____ de las extracciones de agua dulce.",
+      options: ["55%", "63%", "70%"],
+      correctAnswer: 2, // "70%"
    },
    {
       id: "q5",
-      question: "¿Quién escribió 'El Principito'?",
-      options: ["Antoine de Saint-Exupéry", "Julio Verne", "Gabriel García Márquez"],
-      correctAnswer: 0, // "Antoine de Saint-Exupéry"
+      question: "La conversión de ecosistemas naturales en tierras agrícolas es la mayor amenaza para la extinción de especies.",
+      options: ["Verdadero", "Falso", "No está claro"],
+      correctAnswer: 0, // "Verdadero"
    },
    {
       id: "q6",
-      question: "¿Cuál es el océano más grande del mundo?",
-      options: ["Pacífico", "Atlántico", "Índico"],
-      correctAnswer: 0, // "Pacífico"
+      question: "¿Cuál es uno de los principales objetivos de la gestión de la cadena de suministro?",
+      options: ["Maximizar los costos en todas las etapas del proceso.", "Coordinar y fusionar elementos cruciales para la producción.", "inimizar el valor en cada etapa del proceso."],
+      correctAnswer: 1, // "Coordinar y fusionar elementos cruciales para la producción."
    },
    {
       id: "q7",
-      question: "¿Cuál es el país más poblado del mundo?",
-      options: ["China", "India", "Estados Unidos"],
-      correctAnswer: 0, // "China"
+      question: "Definición de desarrollo sustentable según la Comisión Mundial sobre el Medio Ambiente y el Desarrollo.",
+      options: ["La sostenibilidad significa no usar ningún recurso natural para evitar el daño al planeta. ", "Si un negocio es rentable, entonces es sostenible porque puede mantenerse en el tiempo. ", "Desarrollo que satisface las necesidades del presente sin comprometer la capacidad de las futuras generaciones para satisfacer sus propias necesidades."],
+      correctAnswer: 2, // "Desarrollo que satisface las necesidades del presente sin comprometer la capacidad de las futuras generaciones para satisfacer sus propias necesidades."
    },
+   {
+      id: "q8",
+      question: "¿Cuál es el propósito principal del informe de sostenibilidad?",
+      options: ["omentar un enfoque más coherente y eficiente en el reporting corporativo.", "Influenciar la percepción pública y mejorar la reputación de la empresa. ", "Brindar información sobre el impacto de sus políticas en la sociedad y el medio ambiente. "],
+      correctAnswer: 2, // "Brindar información sobre el impacto de sus políticas en la sociedad y el medio ambiente. "
+   }
 ];
 
 export default function TriviaForm() {
@@ -160,14 +166,14 @@ export default function TriviaForm() {
    const formatScore = (score: number) => score.toFixed(2).replace(".", ",") + "%";
 
    return (
-      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)] px-4 h-dvh">
-         <h2 className="text-2xl font-semibold text-center py-6">Cacta 🧩 Trivia </h2>
+      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh">
+         <h2 className="text-2xl font-black bg-[#007d67]/50 rounded-lg text-center p-4 my-4 border border-black/15">Cacta 🧩 Trivia </h2>
 
-         <form onSubmit={handleSubmit} className="space-y-2 grid md:grid-cols-2 place-items-center gap-4 max-w-xl mx-auto px-4">
+         <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-4 max-w-xl mx-auto px-4">
             {questions.map((q) => (
-               <div key={q.id} className="space-y-2 w-full">
-                  <p className="font-semibold text-start">
-                     <span className="text-green-500 animate-pulse delay-700 duration-300 ease-in-out">⏺ </span>{q.question}
+               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded-lg px-4 h-full py-8 border border-black/15">
+                  <p className="font-normal pb-4 text-pretty text-start justify-start text-sm">
+                     <span className="text-green-500 animate-pulse delay-700 duration-300 ease-in-out"> </span> - {q.question}
                   </p>
                   {q.options.map((option, index) => {
                      const isSelected = answers[q.id] === index;
@@ -192,8 +198,8 @@ export default function TriviaForm() {
                   })}
                </div>
             ))}
-            <div className="w-full flex items-center justify-center col-span-2">
-               <button type="submit" className="bg-blue-500 text-white p-3 rounded hover:bg-blue-600 w-full md:w-auto">
+            <div className="w-full flex items-center justify-center col-span-2 pb-8">
+               <button type="submit" className="bg-blue-500 text-white p-3 rounded-xl hover:bg-blue-600 w-full md:w-auto border border-black/15">
                   Enviar Respuestas
                </button>
             </div>
