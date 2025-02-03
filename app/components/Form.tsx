@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Toaster, toast } from 'sonner'
+
 
 export const Form = () => {
    const [name, setName] = useState("");
@@ -63,13 +63,12 @@ export const Form = () => {
          alert(`Gracias por participar ${name}, nos pondremos en contacto contigo a ${email}, si resultas entre los ganadores. ¡Mucha suerte! 🍀`);
          handleRedirect(participantId);// Redirigir a trivia con el ID del usuario
       } else {
-         toast.error('Hubo un error al enviar el formulario.')
+         console.error("Error al enviar el formulario");
       }
    };
 
    return (
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full bg-">
-         <Toaster richColors />
          <label className="text-sm">
             Nombre y Apellido:
             <input
@@ -136,17 +135,19 @@ export const Form = () => {
                className="w-full p-2 border rounded-xl resize-none"
             />
          </label>
-         {
-            loading ? (
-               <button className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 border border-black/15" type="submit" disabled>
-                  Enviando...
-               </button>
-            ) : (
-               <button id="send" className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 border border-black/15" type="submit">
-                  Ir a la trivia
-               </button>
-            )
-         }
+         <div className="py-4 w-full flex">
+            {
+               loading ? (
+                  <button className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 w-full border border-black/15" type="submit" disabled>
+                     Enviando...
+                  </button>
+               ) : (
+                  <button id="send" className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 w-full border border-black/15" type="submit">
+                     Ir a la trivia
+                  </button>
+               )
+            }
+         </div>
       </form>
    );
 }
