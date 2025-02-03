@@ -164,13 +164,14 @@ export default function TriviaForm() {
 
    return (
       <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)]  bg-[#007d67]/25 h-full">
-         <h2 className="text-2xl font-black bg-[#007d67]/50 rounded-lg text-center p-8 my-2 border border-black/15">Cacta 🧩 Trivia </h2>
+         <h2 className="text-2xl font-black bg-[#007d67]/50 rounded text-center p-8 my-2 border border-black/15">Cacta 🧩 Trivia </h2>
 
          <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-2 max-w-xl mx-auto px-2">
             {questions.map((q) => (
-               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded-lg px-2 h-full py-4 border border-black/15">
-                  <p className="font-normal pb-4 text-pretty text-start justify-start text-sm">
-                     <span className="text-green-500 animate-pulse delay-200 duration-300 ease-in-out"> ✦ </span>  {q.question}
+               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded px-2 h-full py-4 border border-black/15 relative">
+                  <span className="text-[#007d67] absolute top-0 right-1 animate-pulse delay-300 duration-300 ease-in-out rotate-12 text-4xl font-black"> ? </span>
+                  <p className="font-normal pb-2 text-balance text-start justify-start text-sm">
+                     {q.question}
                   </p>
                   {q.options.map((option, index) => {
                      const isSelected = answers[q.id] === index;
@@ -187,7 +188,7 @@ export default function TriviaForm() {
                               checked={answers[q.id] === index}
                               disabled={isSubmitted}
                            />
-                           <label htmlFor={`${q.id}-${index}`} className={`text-sm sm:text-base p-2 rounded border border-black/25 w-full ${optionClass}`}>
+                           <label htmlFor={`${q.id}-${index}`} className={`text-sm p-2 rounded border border-black/25 w-full ${optionClass}`}>
                               {option}
                            </label>
                         </div>

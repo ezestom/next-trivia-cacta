@@ -10,11 +10,11 @@ export default function Gracias() {
 	useEffect(() => {
 		setTimeout(() => {
 			router.push("https://cacta.eco/"); // Redirige a la nueva URL después de 3 segundos
-		}, 5000);
+		}, 3000);
 	}, [router]);
 
 	return (
-		<main className="container mx-auto p-4 text-center flex items-center justify-center flex-col h-screen bg-[#007d67]/25">
+		<main className="container mx-auto p-4 text-center flex items-center justify-center flex-col h-screen bg-[#007d67]/25 w-full">
 			<div className="bg-[#007d67]/50 rounded-lg text-center px-4 py-8 border border-black/15">
 				<Image
 					className="max-w-[125px] mx-auto pb-4"
@@ -25,10 +25,10 @@ export default function Gracias() {
 					priority
 				/>
 
-				<h1 className="text-2xl font-bold mb-4">
+				<h1 className="text-xl font-bold mb-4">
 					¡Gracias por participar!
 				</h1>
-				<p className="mb-4">
+				<p className="mb-4 text-sm">
 					Tus respuestas han sido registradas correctamente.
 				</p>
 			</div>

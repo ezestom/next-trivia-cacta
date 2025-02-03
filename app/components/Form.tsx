@@ -79,10 +79,10 @@ export const Form = () => {
 
    return (
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full pt-4">
-         <label className="text-sm">
+         <label className="text-sm font-semibold">
             Nombre y Apellido:
             <input
-               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
+               className="w-full p-2 border rounded bg-[#f9f9f9]"
                type="text"
                value={name}
                onChange={(e) => setName(e.target.value)}
@@ -90,10 +90,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm">
+         <label className="text-sm font-semibold">
             Email:
             <input
-               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
+               className="w-full p-2 border rounded bg-[#f9f9f9]"
                type="email"
                value={email}
                onChange={(e) => setEmail(e.target.value)}
@@ -101,10 +101,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm">
+         <label className="text-sm font-semibold">
             Teléfono:
             <input
-               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
+               className="w-full p-2 border rounded bg-[#f9f9f9]"
                type="text"
                value={phone}
                onChange={(e) => setPhone(e.target.value)}
@@ -113,10 +113,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm">
+         <label className="text-sm font-semibold">
             Compañía:
             <input
-               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
+               className="w-full p-2 border rounded bg-[#f9f9f9]"
                type="text"
                value={company}
                onChange={(e) => setCompany(e.target.value)}
@@ -124,10 +124,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm">
+         <label className="text-sm font-semibold">
             Sector:
             <input
-               className="w-full p-2 border rounded-xl bg-[#f9f9f9]"
+               className="w-full p-2 border rounded bg-[#f9f9f9]"
                type="text"
                value={sector}
                onChange={(e) => setSector(e.target.value)}
@@ -135,24 +135,24 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm">Mensaje (opcional)
+         <label className="text-sm font-semibold">Mensaje (opcional)
             <textarea
                value={message}
                onChange={(e) => setMessage(e.target.value)}
                placeholder="Mensaje (opcional) max. 150 caracteres"
                maxLength={150}
                rows={4}
-               className="w-full p-2 border rounded-xl bg-[#f9f9f9] resize-none"
+               className="w-full p-2 border rounded bg-[#f9f9f9] resize-none"
             />
          </label>
          <div className="py-4 w-full flex">
             {
                loading ? (
-                  <button className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 w-full border border-black/15" type="submit" disabled>
+                  <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full border border-black/15" type="submit" disabled>
                      Enviando...
                   </button>
                ) : (
-                  <button id="send" className="bg-blue-500 text-white p-2 rounded-xl hover:bg-blue-600 w-full border border-black/15" type="submit">
+                  <button id="send" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full border border-black/15" type="submit">
                      Ir a la trivia
                   </button>
                )
