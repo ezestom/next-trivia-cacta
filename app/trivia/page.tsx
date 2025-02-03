@@ -65,7 +65,7 @@ export default function TriviaForm() {
             if (data.userId) {
                setUserId(data.userId);
             } else {
-               alert(data.error || "Error al obtener el ID del usuario");
+               console.log(data.error || "Error al obtener el ID del usuario");
             }
          }
       };
@@ -138,15 +138,18 @@ export default function TriviaForm() {
 
          if (response.ok) {
             // Si la respuesta es correcta, muestra un mensaje de éxito
-            alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " ya lo hemos registrado 🌵");
+            // alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " ya lo hemos registrado 🌵");
+
+            alert(`Gracias por participar! Tu puntaje es ${formatScore(score)} 🎯 Las respuestas correctas son: ${questions.map(q => `• ${q.question}: ${q.options[q.correctAnswer]}`).join("\n")}`);
+
+
          } else {
             // Si hubo un error, muestra el mensaje de error
-            alert(responseData.error || "Hubo un error al actualizar el puntaje.");
+            console.log(responseData.error || "Hubo un error al actualizar el puntaje.");
          }
       } catch (error) {
          // Manejo de errores en la solicitud
          console.error("Error de red:", error);
-         alert("Hubo un error de red: " + error);
       }
    };
 
