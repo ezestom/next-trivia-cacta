@@ -166,7 +166,7 @@ export default function TriviaForm() {
    const formatScore = (score: number) => score.toFixed(2).replace(".", ",") + "%";
 
    return (
-      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh bg-[#007d67]/25">
+      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh bg-[#007d67]/25 h-full">
          <h2 className="text-2xl font-black bg-[#007d67]/50 rounded-lg text-center p-8 my-4 border border-black/15">Cacta 🧩 Trivia </h2>
 
          <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-4 max-w-xl mx-auto px-4">
