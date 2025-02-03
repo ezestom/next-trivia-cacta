@@ -64,7 +64,7 @@ export const Form = () => {
          setUserId(participantId); // Guardar el ID del usuario
          // add sonner toast
          document.querySelectorAll('input').forEach(input => input.disabled = true);
-         alert(`Gracias por participar de la Trivia ${name}, nos pondremos en contacto contigo a ${email}, si resultas entre los ganadores. ¡Mucha suerte! 🍀`);
+         alert(`Gracias por participar ${name}, nos pondremos en contacto contigo a ${email}, si resultas entre los ganadores. ¡Mucha suerte! 🍀`);
          handleRedirect(participantId);// Redirigir a trivia con el ID del usuario
       } else {
          toast.error('Hubo un error al enviar el formulario.')

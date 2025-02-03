@@ -158,7 +158,7 @@ export default function TriviaForm() {
 
    return (
       <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)] px-4 h-dvh">
-         <h2 className="text-2xl font-semibold text-center py-6">Cacta Trivia</h2>
+         <h2 className="text-2xl font-semibold text-center py-6">Cacta 🧩 Trivia </h2>
 
          <form onSubmit={handleSubmit} className="space-y-2 grid md:grid-cols-2 place-items-center gap-4 max-w-xl mx-auto px-4">
             {questions.map((q) => (
