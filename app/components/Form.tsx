@@ -25,8 +25,10 @@ export const Form = () => {
 
          if (response.ok) {
             // Usuario ya registrado, redirigir directamente
-            alert(`Ya has participado de la Trivia, te redirigiremos nuestra web, gracias! 🌵`);
-            handleRedirect(data.userId);
+            const participantId = data.participantId;
+            setUserId(participantId);
+            alert(`Ya has participado de la Trivia, te redirigiremos a nuestra web, gracias! 🌵`);
+            window.location.href = "https://cacta.eco/";
             return true;
          }
       } catch (error) {
