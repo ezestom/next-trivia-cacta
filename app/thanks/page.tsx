@@ -14,7 +14,7 @@ export default function Gracias() {
 	}, [router]);
 
 	return (
-		<main className="container mx-auto p-4 text-center flex items-center justify-center flex-col h-screen">
+		<main className="container mx-auto p-4 text-center flex items-center justify-center flex-col h-screen bg-[#007d67]/25">
 			<div className="bg-[#007d67]/50 rounded-lg text-center px-4 py-8 border border-black/15">
 				<Image
 					className="max-w-[125px] mx-auto pb-4"

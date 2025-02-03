@@ -72,7 +72,7 @@ export const Form = () => {
    };
 
    return (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full bg-">
          <Toaster richColors />
          <label className="text-sm">
             Nombre y Apellido:
