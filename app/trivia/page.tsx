@@ -76,9 +76,9 @@ export default function TriviaForm() {
    const handleClick = () => {
       if (Object.keys(answers).length < questions.length) {
          alert("Por favor, responde todas las preguntas antes de enviar.");
-         return;
+         return false; // Indica que faltan respuestas
       }
-      router.push("/thanks");
+      return true; // Todo está respondido
    };
 
    const handleAnswerChange = (questionId: string, selectedOption: number) => {
@@ -89,6 +89,9 @@ export default function TriviaForm() {
 
    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
+
+      if (!handleClick()) return; // Detiene la ejecución si faltan respuestas
+
       setIsSubmitted(true);
 
       let correctAnswers = 0;
@@ -104,22 +107,52 @@ export default function TriviaForm() {
       if (userId !== null) {
          await handleSubmitScore(userId, scorePercentage);
       }
+
+      router.push("/thanks");
    };
 
    const handleSubmitScore = async (participantId: number, score: number) => {
-      const response = await fetch("/api/updateScore", {
-         method: "POST",
-         headers: { "Content-Type": "application/json" },
-         body: JSON.stringify({ id: participantId, score }),
-      });
+      // Obtener el email desde el localStorage
+      const email = localStorage.getItem("email");
 
-      if (response.ok) {
-         alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " y lo hemos registrado. ¡Buena suerte!");
-      } else {
-         const errorData = await response.json();
-         alert(errorData.error || "Hubo un error al actualizar el puntaje.");
+      // Verificar si se encontró el email
+      if (!email) {
+         alert("No se encontró el email en el almacenamiento.");
+         return;
+      }
+
+      // Preparar los datos para enviar al backend
+      const data = { email, score };
+      console.log('Datos a enviar:', data); // Verifica los datos antes de enviarlos
+
+      try {
+         // Realizar la solicitud POST a la API para guardar el puntaje
+         const response = await fetch("/api/saveScore", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data), // Enviar los datos como JSON
+         });
+
+         const responseData = await response.json(); // Leer la respuesta del servidor
+         console.log('Respuesta del servidor:', responseData); // Verifica la respuesta
+
+         if (response.ok) {
+            // Si la respuesta es correcta, muestra un mensaje de éxito
+            alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " ya lo hemos registrado 🌵");
+         } else {
+            // Si hubo un error, muestra el mensaje de error
+            alert(responseData.error || "Hubo un error al actualizar el puntaje.");
+         }
+      } catch (error) {
+         // Manejo de errores en la solicitud
+         console.error("Error de red:", error);
+         alert("Hubo un error de red: " + error);
       }
    };
+
+
+
+
 
    const formatScore = (score: number) => score.toFixed(2).replace(".", ",") + "%";
 
@@ -144,7 +177,7 @@ export default function TriviaForm() {
                               name={q.id}
                               id={`${q.id}-${index}`}
                               className="m-auto"
-                              onChange={() => { handleAnswerChange(q.id, index); }}
+                              onChange={() => handleAnswerChange(q.id, index)}
                               checked={answers[q.id] === index}
                               disabled={isSubmitted}
                            />
@@ -157,11 +190,12 @@ export default function TriviaForm() {
                </div>
             ))}
             <div className="w-full flex items-center justify-center col-span-2">
-               <button onClick={handleClick} type="submit" className="bg-blue-500 text-white p-3 rounded hover:bg-blue-600 w-full md:w-auto">
+               <button type="submit" className="bg-blue-500 text-white p-3 rounded hover:bg-blue-600 w-full md:w-auto">
                   Enviar Respuestas
                </button>
             </div>
          </form>
+
 
          {score >= 0 && isSubmitted && (
             <div className="mt-6 text-xl font-semibold">

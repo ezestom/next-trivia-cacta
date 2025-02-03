@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Toaster, toast } from 'sonner'
 
 export const Form = () => {
    const [name, setName] = useState("");
@@ -16,11 +17,33 @@ export const Form = () => {
 
    const router = useRouter();
 
+
+   // Función para verificar si el email ya está en el local storage
+   // const checkLocalStorageEmail = () => {
+   //    const storedEmail = localStorage.getItem("email");
+   //    if (storedEmail) {
+   //       toast('Ya has participado de la Trivia. Serás redirigido al sitio web principal.', {
+   //          duration: 5000,
+   //          position: 'top-center',
+   //          icon: '⚠️',
+   //       });
+   //       document.querySelectorAll('input').forEach(input => input.disabled = true);
+   //       setTimeout(() => {
+   //          router.push(`https://cacta.eco/`);
+   //       }, 5000);
+   //    }
+   // }
+   // checkLocalStorageEmail();
+
    const handleRedirect = (userId: number) => {
       router.push(`/trivia?id=${userId}`); // Redirigir a trivia con el id del usuario
       // subir al local storage el email
-      localStorage.setItem("email", email);
-   };
+      if (email) {
+         localStorage.setItem("email", email);
+      }
+   }
+
+
 
    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -39,15 +62,18 @@ export const Form = () => {
          const data = await response.json();
          const participantId = data.participantId; // Suponiendo que `participantId` está en la respuesta
          setUserId(participantId); // Guardar el ID del usuario
-         alert("Gracias por participar " + name + "!" + " Te enviaremos un Email con el descuento si resultas entre los ganadores a " + email);
-         handleRedirect(participantId); // Redirigir a trivia con el ID del usuario
+         // add sonner toast
+         document.querySelectorAll('input').forEach(input => input.disabled = true);
+         alert(`Gracias por participar de la Trivia ${name}, nos pondremos en contacto contigo a ${email}, si resultas entre los ganadores. ¡Mucha suerte! 🍀`);
+         handleRedirect(participantId);// Redirigir a trivia con el ID del usuario
       } else {
-         alert("Hubo un error al enviar el formulario.");
+         toast.error('Hubo un error al enviar el formulario.')
       }
    };
 
    return (
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full">
+         <Toaster richColors />
          <label className="text-sm">
             Nombre y Apellido:
             <input
@@ -120,7 +146,7 @@ export const Form = () => {
                   Enviando...
                </button>
             ) : (
-               <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600" type="submit">
+               <button id="send" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600" type="submit">
                   Ir a la trivia
                </button>
             )
@@ -128,4 +154,5 @@ export const Form = () => {
       </form>
    );
 }
+
 export default Form;

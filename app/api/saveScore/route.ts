@@ -2,13 +2,13 @@
 import { NextResponse } from "next/server";
 import client from "../../lib/turso"; // Importar el cliente de Turso
 
-const insertScoreData = async (userId: number, score: number) => {
+const insertScoreData = async (email: string, score: number) => {
 	const result = await client.execute(
 		`
-    INSERT INTO user_score (user_id, score)
+    INSERT INTO user_score (email, score)
     VALUES (?, ?);
   `,
-		[userId, score]
+		[email, score]
 	);
 
 	return result;
@@ -28,25 +28,8 @@ export async function POST(request: Request) {
 	}
 
 	try {
-		// Primero, obtenemos el ID del usuario usando el email
-		const result = await client.execute(
-			`
-      SELECT id FROM user_form WHERE email = ?;
-    `,
-			[email]
-		);
-
-		const userId = result.rows[0]?.id;
-
-		if (!userId) {
-			return NextResponse.json(
-				{ error: "Usuario no encontrado." },
-				{ status: 404 }
-			);
-		}
-
-		// Luego, insertamos el puntaje del usuario con el ID recuperado
-		const insertResult = await insertScoreData(userId, score);
+		// Insertamos el puntaje del usuario directamente usando el email
+		const insertResult = await insertScoreData(email, score);
 
 		return NextResponse.json({
 			message: "Puntaje guardado exitosamente.",
