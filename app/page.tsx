@@ -4,7 +4,7 @@ import LogoAnimation from "./components/LogoAnimation";
 
 export default function Home() {
   return (
-    <div className="flex items-start bg-[#007d67]/25 justify-center min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh p-4">
+    <div className="flex items-start bg-[#007d67]/25 justify-center min-h-screen font-[family-name:var(--font-geist-sans)] h-full p-4">
       <main className="flex flex-col  row-start-2 items-center">
 
         {/* <Image
