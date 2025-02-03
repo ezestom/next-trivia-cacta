@@ -1,4 +1,5 @@
 'use client'
+import { info } from "console";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Toaster, toast } from 'sonner'
@@ -19,21 +20,17 @@ export const Form = () => {
 
 
    // Función para verificar si el email ya está en el local storage
-   // const checkLocalStorageEmail = () => {
-   //    const storedEmail = localStorage.getItem("email");
-   //    if (storedEmail) {
-   //       toast('Ya has participado de la Trivia. Serás redirigido al sitio web principal.', {
-   //          duration: 5000,
-   //          position: 'top-center',
-   //          icon: '⚠️',
-   //       });
-   //       document.querySelectorAll('input').forEach(input => input.disabled = true);
-   //       setTimeout(() => {
-   //          router.push(`https://cacta.eco/`);
-   //       }, 5000);
-   //    }
-   // }
-   // checkLocalStorageEmail();
+   const checkLocalStorageEmail = () => {
+      const storedEmail = localStorage.getItem("email");
+      if (storedEmail) {
+         setTimeout(() => {
+            document.querySelectorAll('input').forEach(input => input.disabled = true);
+            alert(`Ya has participado con el email ${storedEmail}. Te redirigiremos a la web, ¡suerte! 🌵`);
+            router.push(`https://cacta.eco/`);
+         }, 2000);
+      }
+   }
+   checkLocalStorageEmail();
 
    const handleRedirect = (userId: number) => {
       router.push(`/trivia?id=${userId}`); // Redirigir a trivia con el id del usuario

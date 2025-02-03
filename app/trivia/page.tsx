@@ -36,7 +36,7 @@ const questions = [
    {
       id: "q6",
       question: "¿Cuál es uno de los principales objetivos de la gestión de la cadena de suministro?",
-      options: ["Maximizar los costos en todas las etapas del proceso.", "Coordinar y fusionar elementos cruciales para la producción.", "inimizar el valor en cada etapa del proceso."],
+      options: ["Maximizar los costos en todas las etapas del proceso.", "Coordinar y fusionar elementos cruciales para la producción.", "Minimizar el valor en cada etapa del proceso."],
       correctAnswer: 1, // "Coordinar y fusionar elementos cruciales para la producción."
    },
    {
@@ -48,7 +48,7 @@ const questions = [
    {
       id: "q8",
       question: "¿Cuál es el propósito principal del informe de sostenibilidad?",
-      options: ["omentar un enfoque más coherente y eficiente en el reporting corporativo.", "Influenciar la percepción pública y mejorar la reputación de la empresa. ", "Brindar información sobre el impacto de sus políticas en la sociedad y el medio ambiente. "],
+      options: ["Fomentar un enfoque más coherente y eficiente en el reporting corporativo.", "Influenciar la percepción pública y mejorar la reputación de la empresa. ", "Brindar información sobre el impacto de sus políticas en la sociedad y el medio ambiente. "],
       correctAnswer: 2, // "Brindar información sobre el impacto de sus políticas en la sociedad y el medio ambiente. "
    }
 ];
@@ -146,7 +146,8 @@ export default function TriviaForm() {
             // Si la respuesta es correcta, muestra un mensaje de éxito
             // alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " ya lo hemos registrado 🌵");
 
-            alert(`Gracias por participar! Tu puntaje es ${formatScore(score)} 🎯 Las respuestas correctas son: ${questions.map(q => `• ${q.question}: ${q.options[q.correctAnswer]}`).join("\n")}`);
+            alert(`Gracias por participar! Tu puntaje es ${formatScore(score)} 🎯 Las respuestas correctas son:
+            ${questions.map(q => `• ${q.question}: ${q.options[q.correctAnswer]}`).join("\n")}`);
 
 
          } else {
@@ -159,14 +160,10 @@ export default function TriviaForm() {
       }
    };
 
-
-
-
-
    const formatScore = (score: number) => score.toFixed(2).replace(".", ",") + "%";
 
    return (
-      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)] h-dvh bg-[#007d67]/25 h-full">
+      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)]  bg-[#007d67]/25 h-full">
          <h2 className="text-2xl font-black bg-[#007d67]/50 rounded-lg text-center p-8 my-4 border border-black/15">Cacta 🧩 Trivia </h2>
 
          <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-4 max-w-xl mx-auto px-4">
@@ -204,7 +201,6 @@ export default function TriviaForm() {
                </button>
             </div>
          </form>
-
 
          {score >= 0 && isSubmitted && (
             <div className="mt-6 text-xl font-semibold">
