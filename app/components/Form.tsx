@@ -1,5 +1,4 @@
 'use client'
-import { info } from "console";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Toaster, toast } from 'sonner'
