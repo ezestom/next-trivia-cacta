@@ -39,12 +39,13 @@ export const Form = () => {
 
 
    const handleRedirect = (userId: number) => {
-      router.push(`/trivia?id=${userId}`); // Redirigir a trivia con el id del usuario
-      // subir al local storage el email
+      sessionStorage.setItem("formCompleted", "true"); // Guarda el estado en sessionStorage
+      router.push(`/trivia?id=${userId}`);
       if (email) {
          localStorage.setItem("email", email);
       }
-   }
+   };
+
 
 
 

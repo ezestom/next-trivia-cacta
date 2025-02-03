@@ -62,8 +62,13 @@ export default function TriviaForm() {
    const router = useRouter();
 
    useEffect(() => {
+      // Verificamos si el formulario ya fue enviado
+      if (sessionStorage.getItem("formCompleted")) {
+         router.push("/404");
+      }
+
       const fetchUserId = async () => {
-         const email = localStorage.getItem("email"); // Asume que el correo electrónico se guarda en localStorage después de enviar el formulario
+         const email = localStorage.getItem("email");
          if (email) {
             const response = await fetch(`/api/getUserId?email=${email}`);
             const data = await response.json();
@@ -77,7 +82,7 @@ export default function TriviaForm() {
       };
 
       fetchUserId();
-   }, []);
+   }, [router]);
 
    const handleClick = () => {
       if (Object.keys(answers).length < questions.length) {
