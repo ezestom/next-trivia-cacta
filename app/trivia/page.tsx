@@ -168,7 +168,7 @@ export default function TriviaForm() {
 
          <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-2 max-w-xl mx-auto px-2">
             {questions.map((q) => (
-               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded px-2 h-full py-4 border border-black/15 relative">
+               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded px-2 h-full py-6 border border-black/15 relative">
                   <span className="text-[#007d67] absolute top-0 right-1 animate-pulse delay-300 duration-300 ease-in-out rotate-12 text-4xl font-black"> ? </span>
                   <p className="font-normal pb-2 text-balance text-start justify-start text-sm">
                      {q.question}
@@ -197,7 +197,7 @@ export default function TriviaForm() {
                </div>
             ))}
             <div className="w-full col-span-2 py-4">
-               <button type="submit" className="bg-blue-500  text-white p-3 rounded-xl hover:bg-blue-600 w-full  border border-black/15">
+               <button type="submit" className="bg-blue-500  text-white p-3 rounded hover:bg-blue-600 w-full  border border-black/15">
                   Enviar Respuestas
                </button>
             </div>

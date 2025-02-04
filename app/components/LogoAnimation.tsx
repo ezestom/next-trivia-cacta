@@ -9,7 +9,7 @@ const Logo: React.FC<LogoProps> = ({ className, disableAnimation }) => {
    return (
       <>
          <svg
-            className={`max-w-[8rem] max-h-[8rem] ${className}`}
+            className={`max-w-[6rem] max-h-[6rem] ${className}`}
             xmlns="http://www.w3.org/2000/svg"
             width="1500"
             height="1500"

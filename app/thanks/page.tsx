@@ -24,11 +24,10 @@ export default function Gracias() {
 					height={38}
 					priority
 				/>
-
-				<h1 className="text-xl font-bold mb-4">
+				<h1 className="text-base font-base mb-4">
 					¡Gracias por participar!
 				</h1>
-				<p className="mb-4 text-sm">
+				<p className="mb-4 text-xs">
 					Tus respuestas han sido registradas correctamente.
 				</p>
 			</div>

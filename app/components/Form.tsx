@@ -146,17 +146,15 @@ export const Form = () => {
             />
          </label>
          <div className="py-4 w-full flex">
-            {
-               loading ? (
-                  <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full border border-black/15" type="submit" disabled>
-                     Enviando...
-                  </button>
-               ) : (
-                  <button id="send" className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full border border-black/15" type="submit">
-                     Ir a la trivia
-                  </button>
-               )
-            }
+            <button
+               id="send"
+               className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full border border-black/15 disabled:bg-gray-400 disabled:cursor-not-allowed"
+               type="submit"
+               disabled={loading}
+            >
+               {loading ? "Enviando..." : "Ir a la trivia"}
+            </button>
+
          </div>
       </form>
    );
