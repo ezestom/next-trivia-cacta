@@ -40,7 +40,7 @@ export const Form = () => {
 
    const handleRedirect = (userId: number) => {
       if (userId) {
-         window.localStorage.setItem("email", email);
+         window.localStorage.setItem("email", email);         
 
          router.push(`/trivia?id=${userId}`);
       } else {
@@ -48,16 +48,6 @@ export const Form = () => {
       }
    }
    
-   
-   
-   // if (userId) {
-   //       router.push(`/trivia?id=${userId}`);
-   // } else {
-   //    router.push(`https://cacta.eco/`); // Redirige a la página principal
-   // }
-
-
-
 
    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -74,13 +64,26 @@ export const Form = () => {
          },
          body: JSON.stringify({ name, email, phone, company, sector, message }),
       });
+
+      // Llamada a la API de Resend para enviar el email
+      await fetch('/api/send', {  // Aquí llamamos a tu API de Resend
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({
+            name,
+            email:"ezequielstom@gmail.com", // Cambiar cuando tenga las credenciales
+         }),
+      });
+      
       setLoading(false);
 
       if (response.ok) {
          const data = await response.json();
          const participantId = data.participantId;
          setUserId(participantId);
-         alert(`Gracias por participar ${name}, el ganador será anunciado el 31 de marzo en nuestras redes sociales.🎁`);
+         alert(`Gracias por participar ${name}, el ganador será anunciado el 31 de marzo en nuestras redes sociales 🎁`);
          handleRedirect(participantId);
       } else {
          console.error("Error al enviar el formulario");

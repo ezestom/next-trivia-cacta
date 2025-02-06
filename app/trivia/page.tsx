@@ -194,7 +194,7 @@ export default function TriviaForm() {
                               checked={answers[q.id] === index}
                               disabled={isSubmitted}
                            />
-                           <label htmlFor={`${q.id}-${index}`} className={`text-xs p-2 rounded border border-black/25 w-full text-pretty ${optionClass}`}>
+                           <label htmlFor={`${q.id}-${index}`} className={`text-xs p-2 rounded border border-gray-500 w-full text-pretty ${optionClass}`}>
                               {option}
                            </label>
                         </div>
