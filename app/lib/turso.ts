@@ -1,18 +1,18 @@
 // app/lib/turso.ts
 import { createClient } from "@libsql/client";
 
-const client = createClient({
-	url: "file:local.db",
-	syncUrl: "https://ezestom-ddbb-ezestom.turso.io", // URL de tu base de datos en Turso
-	authToken: process.env.AUTH_TOKEN, // Token de autenticación de Turso
-});
-
 // const client = createClient({
-// 	url:
-// 		process.env.TURSO_DATABASE_URL ||
-// 		"https://ezestom-ddbb-ezestom.turso.io",
+// 	url: "file:local.db",
+// 	syncUrl: "https://ezestom-ddbb-ezestom.turso.io", // URL de tu base de datos en Turso
 // 	authToken: process.env.AUTH_TOKEN, // Token de autenticación de Turso
 // });
+
+const client = createClient({
+	url:
+		process.env.TURSO_DATABASE_URL ||
+		"https://ezestom-ddbb-ezestom.turso.io",
+	authToken: process.env.AUTH_TOKEN, // Token de autenticación de Turso
+});
 
 
 // Función para crear la tabla `user_form`
