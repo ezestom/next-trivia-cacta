@@ -10,6 +10,7 @@ export default function Gracias() {
 	useEffect(() => {
 		setTimeout(() => {
 			router.push("https://cacta.eco/"); // Redirige a la nueva URL después de 3 segundos
+			window.localStorage.removeItem("email");
 		}, 3000);
 	}, [router]);
 

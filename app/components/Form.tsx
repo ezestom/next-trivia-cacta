@@ -28,7 +28,7 @@ export const Form = () => {
             const participantId = data.participantId;
             setUserId(participantId);
             alert(`Ya has participado de la Trivia, te redirigiremos a nuestra web, gracias! 🌵`);
-            window.location.href = "https://cacta.eco/";
+            router.push(`https://cacta.eco/`); // Redirige a la página principal
             return true;
          }
       } catch (error) {
@@ -40,19 +40,20 @@ export const Form = () => {
 
    const handleRedirect = (userId: number) => {
       if (userId) {
-            router.push(`/trivia?id=${userId}`);
+         window.localStorage.setItem("email", email);
+
+         router.push(`/trivia?id=${userId}`);
       } else {
          router.push(`https://cacta.eco/`); // Redirige a la página principal
       }
-   };
-
-
-
-   // sessionStorage.setItem("formCompleted", "true"); // Guarda el estado en sessionStorage
-
-   // router.push(`/trivia?id=${userId}`);
-   // if (email) {
-   //    localStorage.setItem("email", email);
+   }
+   
+   
+   
+   // if (userId) {
+   //       router.push(`/trivia?id=${userId}`);
+   // } else {
+   //    router.push(`https://cacta.eco/`); // Redirige a la página principal
    // }
 
 

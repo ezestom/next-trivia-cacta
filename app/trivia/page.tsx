@@ -65,7 +65,7 @@ export default function TriviaForm() {
 
    useEffect(() => {
       const fetchUserId = async () => {
-         const email = localStorage.getItem("email"); // Asume que el correo electrónico se guarda en localStorage después de enviar el formulario
+         const email = localStorage.getItem("email");
          if (email) {
             const response = await fetch(`/api/getUserId?email=${email}`);
             const data = await response.json();
@@ -75,6 +75,8 @@ export default function TriviaForm() {
             } else {
                console.log(data.error || "Error al obtener el ID del usuario");
             }
+         } else {
+            console.log("No se encontró el email en el almacenamiento.");
          }
       };
 
@@ -171,9 +173,9 @@ export default function TriviaForm() {
          width={85}
          height={85} alt="cacta-logo" />Trivia </h2>
 
-         <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-2 max-w-xl mx-auto px-2">
+         <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-2 max-w-xl mx-auto px-1">
             {questions.map((q) => (
-               <div key={q.id} className="space-y-2 w-full bg-[#374151]/50 rounded p-4 h-full border border-black/15 relative">
+               <div key={q.id} className="space-y-2 w-full bg-[#374151]/50 rounded py-8 px-4 h-full border border-black/15 relative">
                   <p className="font-normal pb-2 text-balance text-start justify-start text-sm">
                      {q.question}
                   </p>
@@ -192,7 +194,7 @@ export default function TriviaForm() {
                               checked={answers[q.id] === index}
                               disabled={isSubmitted}
                            />
-                           <label htmlFor={`${q.id}-${index}`} className={`text-sm p-2 rounded border border-black/25 w-full ${optionClass}`}>
+                           <label htmlFor={`${q.id}-${index}`} className={`text-xs p-2 rounded border border-black/25 w-full text-pretty ${optionClass}`}>
                               {option}
                            </label>
                         </div>
