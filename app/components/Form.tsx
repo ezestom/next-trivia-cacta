@@ -39,12 +39,21 @@ export const Form = () => {
 
 
    const handleRedirect = (userId: number) => {
-      sessionStorage.setItem("formCompleted", "true"); // Guarda el estado en sessionStorage
-      router.push(`/trivia?id=${userId}`);
-      if (email) {
-         localStorage.setItem("email", email);
+      if (userId) {
+            router.push(`/trivia?id=${userId}`);
+      } else {
+         router.push(`https://cacta.eco/`); // Redirige a la página principal
       }
    };
+
+
+
+   // sessionStorage.setItem("formCompleted", "true"); // Guarda el estado en sessionStorage
+
+   // router.push(`/trivia?id=${userId}`);
+   // if (email) {
+   //    localStorage.setItem("email", email);
+   // }
 
 
 
@@ -78,11 +87,11 @@ export const Form = () => {
    };
 
    return (
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full pt-4">
-         <label className="text-sm font-semibold">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full pt-4 text-sm">
+         <label >
             Nombre y Apellido:
             <input
-               className="w-full p-2 border rounded bg-[#f9f9f9]"
+               className="w-full p-2 border rounded text-black"
                type="text"
                value={name}
                onChange={(e) => setName(e.target.value)}
@@ -90,10 +99,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm font-semibold">
+         <label >
             Email:
             <input
-               className="w-full p-2 border rounded bg-[#f9f9f9]"
+               className="w-full p-2 border rounded text-black"
                type="email"
                value={email}
                onChange={(e) => setEmail(e.target.value)}
@@ -101,10 +110,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm font-semibold">
+         <label >
             Teléfono:
             <input
-               className="w-full p-2 border rounded bg-[#f9f9f9]"
+               className="w-full p-2 border rounded text-black"
                type="text"
                value={phone}
                onChange={(e) => setPhone(e.target.value)}
@@ -113,10 +122,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm font-semibold">
+         <label >
             Compañía:
             <input
-               className="w-full p-2 border rounded bg-[#f9f9f9]"
+               className="w-full p-2 border rounded text-black"
                type="text"
                value={company}
                onChange={(e) => setCompany(e.target.value)}
@@ -124,10 +133,10 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm font-semibold">
+         <label >
             Sector:
             <input
-               className="w-full p-2 border rounded bg-[#f9f9f9]"
+               className="w-full p-2 border rounded text-black"
                type="text"
                value={sector}
                onChange={(e) => setSector(e.target.value)}
@@ -135,20 +144,20 @@ export const Form = () => {
                required
             />
          </label>
-         <label className="text-sm font-semibold">Mensaje (opcional)
+         <label >Mensaje (opcional)
             <textarea
                value={message}
                onChange={(e) => setMessage(e.target.value)}
                placeholder="Mensaje (opcional) max. 150 caracteres"
                maxLength={150}
                rows={4}
-               className="w-full p-2 border rounded bg-[#f9f9f9] resize-none"
+               className="w-full p-2 border rounded bg-[#f9f9f9] resize-none text-black"
             />
          </label>
          <div className="py-4 w-full flex">
             <button
                id="send"
-               className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 w-full border border-black/15 disabled:bg-gray-400 disabled:cursor-not-allowed"
+               className="bg-blue-500  p-4 rounded hover:bg-blue-600 w-full border border-black/15 disabled:bg-gray-400 disabled:cursor-not-allowed"
                type="submit"
                disabled={loading}
             >

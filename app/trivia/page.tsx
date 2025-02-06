@@ -1,6 +1,8 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+
 
 const questions = [
    {
@@ -163,13 +165,15 @@ export default function TriviaForm() {
    const formatScore = (score: number) => score.toFixed(2).replace(".", ",") + "%";
 
    return (
-      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-geist-sans)]  bg-[#007d67]/25 h-full">
-         <h2 className="text-2xl font-black bg-[#007d67]/50 rounded text-center p-8 my-2 border border-black/15">Cacta 🧩 Trivia </h2>
+      <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-poppins)]  bg-[#111826] h-full">
+         <h2 className="text-3xl font-black bg-[#374151]/50 rounded text-center p-8 my-2 border border-black/15">
+         <Image src="/logoTrivia2.png"
+         width={85}
+         height={85} alt="cacta-logo" />Trivia </h2>
 
          <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-2 max-w-xl mx-auto px-2">
             {questions.map((q) => (
-               <div key={q.id} className="space-y-2 w-full bg-[#007d67]/25 rounded px-2 h-full py-6 border border-black/15 relative">
-                  <span className="text-[#007d67] absolute top-0 right-1 animate-pulse delay-300 duration-300 ease-in-out rotate-12 text-4xl font-black"> ? </span>
+               <div key={q.id} className="space-y-2 w-full bg-[#374151]/50 rounded p-4 h-full border border-black/15 relative">
                   <p className="font-normal pb-2 text-balance text-start justify-start text-sm">
                      {q.question}
                   </p>

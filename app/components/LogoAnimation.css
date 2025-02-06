@@ -1,3 +1,12 @@
+		
+	.logo{
+		filter: drop-shadow(0 0 0.75rem rgba(255, 255, 255, 255.5));
+		fill: #fff;
+		stroke: #fff;
+	}
+	
+	
+	
 	@media (prefers-reduced-motion: no-preference) {
 		.logo {
 			fill-opacity: 0;
