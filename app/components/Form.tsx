@@ -118,7 +118,7 @@ export const Form = () => {
                type="text"
                value={phone}
                onChange={(e) => setPhone(e.target.value)}
-               pattern="^\d{1,3}\s?\d{0,2}\s?\d{2,4}\s?\d{2,4}\s?\d{0,4}$"
+               pattern="^\+?[0-9\s\-()]{7,20}$"
                placeholder="ej: 54 9 11 1234 5678"
                required
             />
