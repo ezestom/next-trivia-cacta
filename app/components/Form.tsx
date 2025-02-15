@@ -73,7 +73,7 @@ export const Form = () => {
          },
          body: JSON.stringify({
             name,
-            email:"ezequielstom@gmail.com", // Cambiar cuando tenga las credenciales
+            email, //ezequielstom@gmail.com || Cambiar cuando tenga las credenciales
          }),
       });
       
