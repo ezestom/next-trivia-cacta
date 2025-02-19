@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+
 
 
 const questions = [
@@ -85,7 +87,13 @@ export default function TriviaForm() {
 
    const handleClick = () => {
       if (Object.keys(answers).length < questions.length) {
-         alert("Por favor, responde todas las preguntas antes de enviar.");
+         Swal.fire({
+            title: "¡Faltan respuestas!",
+            text: "Por favor, responde todas las preguntas antes de enviar.",
+            icon: "warning",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#FF0000", // Puedes elegir un color de botón
+         });
          return false; // Indica que faltan respuestas
       }
       return true; // Todo está respondido
@@ -118,7 +126,7 @@ export default function TriviaForm() {
          await handleSubmitScore(userId, scorePercentage);
       }
 
-      router.push("/thanks");
+      // router.push("/thanks");
    };
 
    const handleSubmitScore = async (participantId: number, score: number) => {
@@ -147,13 +155,21 @@ export default function TriviaForm() {
          console.log('Respuesta del servidor:', responseData); // Verifica la respuesta
 
          if (response.ok) {
-            // Si la respuesta es correcta, muestra un mensaje de éxito
-            // alert("Gracias por participar! Tu puntaje ha sido " + formatScore(score) + " ya lo hemos registrado 🌵");
-
-            alert(`Gracias por participar! Tu puntaje es ${formatScore(score)} 🎯 Las respuestas correctas son:
-         ${("\n")}${questions.map(q => `• ${q.question}: ${q.options[q.correctAnswer]}`).join("\n")}`);
-
-
+            // Si la respuesta es correcta, muestra el mensaje con el puntaje y espera a que el usuario confirme
+            Swal.fire({
+               title: "Gracias por participar!",
+               html: `Tu puntaje es <b style="color: #2563eb;">${formatScore(score)}</b> 🎯<br><br>
+            <b>Respuestas correctas:</b><br>
+            ${questions.map(q => `<p>• <b>${q.question}</b>: <span style="font-weight: bold; color: green;">${q.options[q.correctAnswer]}</span></p>`).join("")}`,
+               icon: "success",
+               confirmButtonText: "Seguir",
+               confirmButtonColor: "#2563eb", // Color del botón
+            }).then((result) => {
+               if (result.isConfirmed) {
+                  // Solo redirige cuando el usuario hace clic en "Aceptar"
+                  router.push("/thanks");
+               }
+            });
          } else {
             // Si hubo un error, muestra el mensaje de error
             console.log(responseData.error || "Hubo un error al actualizar el puntaje.");
@@ -163,6 +179,7 @@ export default function TriviaForm() {
          console.error("Error de red:", error);
       }
    };
+
 
    const formatScore = (score: number) => score.toFixed(2).replace(".", ",") + "%";
 

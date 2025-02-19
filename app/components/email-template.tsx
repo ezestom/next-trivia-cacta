@@ -6,17 +6,14 @@ interface EmailTemplateProps {
 
 export const EmailTemplate = ({ name }: EmailTemplateProps) => (
    <div style={{ fontFamily: "'Poppins', sans-serif", padding: "50px", backgroundColor: "#111826", borderRadius: "8px", color: "#fff", maxWidth: "600px", margin: "0 auto" }}>
-      <h2 style={{ color: "#fff", fontSize: "24px", fontWeight: "bold", maxWidth: "600px", margin: "0 auto" }}>¡Gracias por tu registro, {name}!</h2>
+      <h2 style={{ color: "#fff", fontSize: "24px", fontWeight: "bold", maxWidth: "600px", margin: "0 auto" }}>🎉 ¡Gracias por participar, {name}!</h2>
 
-      <div>
-         <p style={{ fontSize: "16px", marginBottom: "10px" }}>🔒 Tu código</p>
-
-         <h1 style={{ fontSize: "32px", fontWeight: "bold", color: "#fff", backgroundColor: "#374151", padding: "10px", borderRadius: "8px", margin: "10px 0" }}>CACTA-EA-001-20</h1>
-      </div>
-
-      <p style={{ fontSize: "16px", marginBottom: "10px" }}>📅 Recuerda que tu código es válido hasta el 14 de abril de 2025.</p>
+      <p style={{ fontSize: "16px", marginBottom: "10px" }}>Si respondiste todas las preguntas correctamente, ¡tus chances de ganar se han duplicado! 🔥 </p>
       <p style={{ fontSize: "16px", marginBottom: "10px" }}>
-         Hay que crear este template, necesito la Información!
+         No te pierdas el gran anuncio del ganador este 31 de marzo de 2025 en nuestras redes sociales. 📲✨
+      </p>
+      <p style={{ fontSize: "16px", marginBottom: "10px" }}>
+         ¡Mantente atento, la suerte podría estar de tu lado! 🍀🥳
       </p>
 
       <h3 style={{ fontSize: "18px", fontWeight: "bold", marginBottom: "8px" }}>📧 Correo:</h3>
@@ -34,11 +31,6 @@ export const EmailTemplate = ({ name }: EmailTemplateProps) => (
          <li><a href="https://www.instagram.com/cacta_eco" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>Instagram: @cacta_eco</a></li>
          <li><a href="https://www.linkedin.com/company/cacta-sustainability-solutions" target="_blank" rel="noopener noreferrer" style={{ color: "#3b82f6" }}>LinkedIn: Cacta Sustainability Solutions</a></li>
       </ul>
-
-      <div style={{ maxWidth: "600px", margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-         <p style={{ fontSize: "18px" }}>Prevé el cambio, moldealo a tu favor.</p>
-         <p style={{ fontSize: "16px" }}>¿Preparado para comenzar?</p>
-      </div>
    </div>
 );
 

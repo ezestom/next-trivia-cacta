@@ -22,7 +22,7 @@ export default function Home() {
           <li className="mb-1 text-pretty" >Mide, mejora y lidera el camino hacia una agricultura más sostenible.
           </li>
           <li className="mb-1 text-pretty" >
-            ¡Participa en nuestra Trivia y obtén 1 medición gratuita!
+            ¡Participa en nuestra Trivia y obtén 1 medición gratuita! <br /> Recuerda que si todas tus respuestas son correctas, tus oportunidades de ganar se duplicarán.
           </li>
           <li className="mb-1 text-pretty" >
             No te pierdas el gran anuncio del ganador este 31 de marzo de 2025 en nuestras redes sociales.

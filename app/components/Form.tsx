@@ -1,6 +1,8 @@
 'use client'
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Swal from "sweetalert2";
+
 
 
 export const Form = () => {
@@ -18,43 +20,56 @@ export const Form = () => {
    const router = useRouter();
 
 
-   const checkUserExists = async (email: string) => {
-      try {
-         const response = await fetch(`/api/getUserId?email=${email}`);
-         const data = await response.json();
+   // const checkUserExists = async (email: string) => {
+   //    try {
+   //       const response = await fetch(`/api/getUserId?email=${email}`);
+   //       const data = await response.json();
 
-         if (response.ok) {
-            // Usuario ya registrado, redirigir directamente
-            const participantId = data.participantId;
-            setUserId(participantId);
-            alert(`Ya has participado de la Trivia, te redirigiremos a nuestra web, gracias! 🌵`);
-            router.push(`https://cacta.eco/`); // Redirige a la página principal
-            return true;
-         }
-      } catch (error) {
-         console.error("Error verificando usuario:", error);
-      }
-      return false;
-   };
+   //       if (response.ok) {
+   //          // Usuario ya registrado, redirigir directamente
+   //          const participantId = data.participantId;
+   //          setUserId(participantId);
+   //          Swal.fire({
+   //             title: "¡Ya has participado! 🌵",
+   //             text: "Te redirigiremos a nuestra web, ¡gracias por participar!",
+   //             icon: "info",
+   //             confirmButtonText: "Ir a la web",
+   //             confirmButtonColor: "#4CAF50", 
+   //          }).then(() => {
+   //             router.push("https://cacta.eco/"); 
+   //          });
+
+   //          return true;
+
+   //       }
+   //    } catch (error) {
+   //       console.error("Error verificando usuario:", error);
+   //    }
+   //    return false;
+   // };
 
 
    const handleRedirect = (userId: number) => {
       if (userId) {
-         window.localStorage.setItem("email", email);         
+         window.localStorage.setItem("email", email);
 
          router.push(`/trivia?id=${userId}`);
       } else {
-         router.push(`https://cacta.eco/`); // Redirige a la página principal
+         router.push(`https://cacta.eco/`);
       }
    }
-   
+
 
    const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
       // Verificar si el usuario ya está registrado
-      const userExists = await checkUserExists(email);
-      if (userExists) return; // Si ya existe, no enviamos el formulario
+
+      // const userExists = await checkUserExists(email);
+
+      const userExists = false; // Se asume que no existe
+      if (userExists) return;
+      // Si ya existe, no enviamos el formulario
 
       setLoading(true);
       const response = await fetch("/api/submitForm", {
@@ -76,15 +91,22 @@ export const Form = () => {
             email, //ezequielstom@gmail.com || Cambiar cuando tenga las credenciales
          }),
       });
-      
+
       setLoading(false);
 
       if (response.ok) {
          const data = await response.json();
          const participantId = data.participantId;
          setUserId(participantId);
-         alert(`Gracias por participar ${name}, el ganador será anunciado el 31 de marzo en nuestras redes sociales 🎁`);
-         handleRedirect(participantId);
+         Swal.fire({
+            title: `Gracias por participar ${name}!`,
+            html: "El ganador será anunciado el 31 de marzo en nuestras redes sociales 🎁",
+            icon: "success",
+            confirmButtonText: "Seguir",
+            confirmButtonColor: "#2563eb", // Color del botón
+         }).then(() => {
+            handleRedirect(participantId);
+         });
       } else {
          console.error("Error al enviar el formulario");
       }
