@@ -158,16 +158,19 @@ export default function TriviaForm() {
             // Si la respuesta es correcta, muestra el mensaje con el puntaje y espera a que el usuario confirme
             Swal.fire({
                title: "Gracias por participar!",
-               html: `Tu puntaje es <b style="color: #2563eb;">${formatScore(score)}</b> 🎯<br><br>
-            <b>Respuestas correctas:</b><br>
-            ${questions.map(q => `<p>• <b>${q.question}</b>: <span style="font-weight: bold; color: green;">${q.options[q.correctAnswer]}</span></p>`).join("")}`,
+               html: `Tu puntaje es <b style="color: #2563eb;">${formatScore(score)}</b> 🎯<br><br>`,
                icon: "success",
                confirmButtonText: "Seguir",
-               confirmButtonColor: "#2563eb", // Color del botón
+               cancelButtonText: "Respuestas",
+               showCancelButton: true, // Habilita el segundo botón
+               confirmButtonColor: "#2563eb",
+               cancelButtonColor: "#22c55e",
             }).then((result) => {
                if (result.isConfirmed) {
                   // Solo redirige cuando el usuario hace clic en "Aceptar"
                   router.push("/thanks");
+               } else if (result.dismiss === Swal.DismissReason.cancel) {
+                  router.push("/response");
                }
             });
          } else {
@@ -186,9 +189,9 @@ export default function TriviaForm() {
    return (
       <section className="flex flex-col items-center justify-start min-h-screen font-[family-name:var(--font-poppins)]  bg-[#111826] h-full">
          <h2 className="text-3xl font-black bg-[#374151]/50 rounded text-center p-8 my-2 border border-black/15">
-         <Image src="/logoTrivia2.png"
-         width={85}
-         height={85} alt="cacta-logo" />Trivia </h2>
+            <Image src="/logoTrivia2.png"
+               width={85}
+               height={85} alt="cacta-logo" />Trivia </h2>
 
          <form onSubmit={handleSubmit} className="grid grid-cols-2 grid-rows-2  place-items-start gap-2 max-w-xl mx-auto px-1">
             {questions.map((q) => (
